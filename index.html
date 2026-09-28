@@ -2,708 +2,290 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Purity's Restaurant ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purity Restaurant Game</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#120d0a;
-    color:white;
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff4df, #ffd59a);
+    min-height: 100vh;
+    color: #3b2414;
 }
 
-header{
-    background:linear-gradient(135deg,#5c1717,#d47a25);
-    padding:18px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:10;
-    box-shadow:0 4px 15px #000;
+header {
+    background: #7b2d26;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px #0004;
 }
 
-header h1{
-    font-size:27px;
+header h1 {
+    font-size: 28px;
 }
 
-.subtitle{
-    margin-top:5px;
-    color:#ffd9a1;
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 8px;
+    font-weight: bold;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:7px;
-    margin-top:15px;
+.game {
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px;
 }
 
-.stat{
-    background:#0005;
-    padding:9px;
-    border-radius:10px;
-    font-size:13px;
-}
-
-.game{
-    max-width:1100px;
-    margin:auto;
-    padding:15px;
-}
-
-.section{
-    margin-bottom:18px;
-}
-
-.section-title{
-    margin-bottom:10px;
-    color:#ffc77d;
-}
-
-/* RESTAURANT */
-
-.restaurant{
-    min-height:360px;
-    border-radius:18px;
-    padding:18px;
+.restaurant {
+    position: relative;
+    min-height: 520px;
     background:
-    linear-gradient(#08101655,#08101688),
-    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85");
-    background-size:cover;
-    background-position:center;
-    position:relative;
-    overflow:hidden;
+        linear-gradient(#e9c49b 0 65%, #8b5a35 65% 100%);
+    border: 6px solid #5a321c;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px #0005;
 }
 
-.restaurant::before{
-    content:"";
-    position:absolute;
-    z-index:0;
-    inset:-25%;
-    pointer-events:none;
-    background:
-        radial-gradient(ellipse at 18% 18%,#ffd58a55 0 8%,transparent 28%),
-        radial-gradient(ellipse at 82% 25%,#f08a3b33 0 7%,transparent 24%),
-        linear-gradient(105deg,transparent 35%,#ffd18a18 48%,transparent 62%);
-    background-size:100% 100%,100% 100%,220% 100%;
-    animation:roomAtmosphere 10s ease-in-out infinite;
+/* WALL DECOR */
+
+.wall-sign {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #5c1e18;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.restaurant-name,
-.tables{
-    position:relative;
-    z-index:2;
+.window {
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    width: 150px;
+    height: 100px;
+    background: linear-gradient(#79c8ee, #dff6ff);
+    border: 8px solid #704225;
 }
 
-@keyframes roomAtmosphere{
-    0%,100%{opacity:.55;background-position:0 0,0 0,100% 0;transform:scale(1)}
-    50%{opacity:.9;background-position:5% -3%, -5% 4%,0 0;transform:scale(1.04)}
+.window:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 5px;
+    background: #704225;
 }
 
-.walkway{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    perspective:500px;
+.window:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 5px;
+    background: #704225;
 }
 
-.walkway::after{
-    content:"";
-    position:absolute;
-    z-index:1;
-    left:8%;
-    right:8%;
-    top:210px;
-    height:3px;
-    border-radius:50%;
-    background:#1d100b66;
-    filter:blur(2px);
+/* CUSTOMER AREA */
+
+.customer-area {
+    position: absolute;
+    top: 175px;
+    left: 0;
+    width: 100%;
+    height: 160px;
 }
 
-.walker{
-    position:absolute;
-    z-index:3;
-    top:122px;
-    left:-70px;
-    width:60px;
-    height:88px;
-    transform-style:preserve-3d;
-    transform-origin:center bottom;
-    animation:visitLeft 14s ease-in-out infinite;
+.customer {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    transition: all 0.8s ease;
 }
 
-.walker::after{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    left:7px;
-    bottom:-2px;
-    width:42px;
-    height:8px;
-    border-radius:50%;
-    background:#160b0888;
-    filter:blur(2px);
-    animation:footShadow .45s ease-in-out infinite alternate;
+.person {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    background: #d8956a;
+    border: 4px solid #542817;
 }
 
-.walker-reverse{
-    left:auto;
-    right:-70px;
-    animation:visitRight 16s ease-in-out infinite 4s;
+.person:after {
+    content: "";
+    position: absolute;
+    width: 75px;
+    height: 55px;
+    left: -11px;
+    top: 50px;
+    background: #355c7d;
+    border-radius: 35px 35px 5px 5px;
 }
 
-.walker .person-head{
-    animation:walkHead .45s ease-in-out infinite alternate;
+.customer-name {
+    margin-top: 50px;
+    font-weight: bold;
 }
 
-.walker .person-body{
-    animation:walkBody .45s ease-in-out infinite alternate;
+.order {
+    margin-top: 8px;
+    background: white;
+    padding: 6px;
+    border-radius: 8px;
+    box-shadow: 0 2px 7px #0004;
 }
 
-.walker .person-leg-left{
-    animation:stepLeft .45s ease-in-out infinite alternate;
-    transform-origin:top center;
+/* TABLES */
+
+.tables {
+    position: absolute;
+    bottom: 145px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
-.walker .person-leg-right{
-    animation:stepRight .45s ease-in-out infinite alternate;
-    transform-origin:top center;
-}
-
-@keyframes visitLeft{
-    0%{left:-70px;transform:translate3d(0,8px,0) scale(.7) rotateY(-12deg)}
-    22%{left:24%;transform:translate3d(0,0,0) scale(1) rotateY(4deg)}
-    30%{left:24%;transform:translate3d(0,20px,0) scale(.86,.7) rotateY(0)}
-    58%{left:24%;transform:translate3d(0,20px,0) scale(.86,.7) rotateY(0)}
-    66%{left:24%;transform:translate3d(0,0,0) scale(1) rotateY(-4deg)}
-    100%{left:110%;transform:translate3d(0,8px,0) scale(.7) rotateY(12deg)}
-}
-
-@keyframes visitRight{
-    0%{right:-70px;transform:translate3d(0,4px,0) scale(.72) rotateY(12deg)}
-    22%{right:25%;transform:translate3d(0,0,0) scale(1) rotateY(-4deg)}
-    30%{right:25%;transform:translate3d(0,20px,0) scale(.86,.7) rotateY(0)}
-    58%{right:25%;transform:translate3d(0,20px,0) scale(.86,.7) rotateY(0)}
-    66%{right:25%;transform:translate3d(0,0,0) scale(1) rotateY(4deg)}
-    100%{right:110%;transform:translate3d(0,4px,0) scale(.72) rotateY(-12deg)}
-}
-
-@keyframes walkHead{
-    from{transform:translateY(1px) rotateZ(-2deg)}
-    to{transform:translateY(-2px) rotateZ(2deg)}
-}
-
-@keyframes walkBody{
-    from{transform:translateY(1px) rotateZ(3deg)}
-    to{transform:translateY(-1px) rotateZ(-3deg)}
-}
-
-@keyframes footShadow{
-    from{transform:scaleX(.84);opacity:.65}
-    to{transform:scaleX(1);opacity:.95}
-}
-
-@keyframes stepLeft{
-    from{transform:translateX(-2px) rotateZ(14deg)}
-    to{transform:translateX(2px) rotateZ(-14deg)}
-}
-
-@keyframes stepRight{
-    from{transform:translateX(2px) rotateZ(-14deg)}
-    to{transform:translateX(-2px) rotateZ(14deg)}
-}
-
-.restaurant-name{
-    text-align:center;
-    font-size:28px;
-    margin-bottom:20px;
-}
-
-.tables{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.table{
-    position:relative;
-    background:linear-gradient(145deg,#3a2b26dd,#171d22ee);
-    border:1px solid #c3a17888;
-    border-radius:14px;
-    min-height:146px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.table::before{
-    content:"";
-    position:absolute;
-    z-index:0;
-    left:50%;
-    bottom:-23px;
-    width:40px;
-    height:25px;
-    transform:translateX(-50%);
-    border:4px solid #b87545;
-    border-top:0;
-    border-radius:0 0 9px 9px;
-    background:linear-gradient(90deg,transparent 0 38%,#8e4b2e 39% 61%,transparent 62%);
-    box-shadow:0 4px 0 #3a2018;
-}
-
-.table::after{
-    content:"";
-    position:absolute;
-    z-index:1;
-    left:50%;
-    bottom:-3px;
-    width:32px;
-    height:10px;
-    transform:translateX(-50%);
-    border-radius:50%;
-    background:#d08a53;
-    box-shadow:0 3px 0 #5a2d20;
-}
-
-.table[hidden]{
-    display:none;
-}
-
-.customer{
-    width:88px;
-    height:112px;
-    position:relative;
-    transform-style:preserve-3d;
-    animation:customerBob 2.8s ease-in-out infinite;
-}
-
-.human-photo{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
-    border-radius:13px 13px 5px 5px;
-    border:2px solid #d8c2a488;
-    box-shadow:0 9px 16px #05080bcc;
-    filter:saturate(.88) contrast(1.06);
-    background:#26323a;
-}
-
-.customer .human-photo{
-    opacity:.98;
-}
-
-.walker{
-    width:78px;
-    height:124px;
-    top:210px;
-}
-
-.walker .human-photo{
-    border-radius:14px 14px 7px 7px;
-    animation:photoWalkSway .52s ease-in-out infinite alternate;
-}
-
-.waiter{
-    left:auto;
-    right:-78px;
-    top:170px;
-    z-index:4;
-    animation:waiterRoute 12s ease-in-out infinite 2s;
-}
-
-.waiter .human-photo{
-    border-color:#d9b16c99;
-}
-
-.customer{
-    animation:dineIdle 6s ease-in-out infinite;
-}
-
-.customer:nth-child(2){animation-delay:1.4s}
-.customer:nth-child(3){animation-delay:2.8s}
-
-@keyframes dineIdle{
-    0%,62%,100%{transform:translateY(0) rotateY(-1deg)}
-    68%{transform:translateY(-3px) rotateY(4deg) scale(.98)}
-    74%{transform:translateY(0) rotateY(-2deg) scale(1)}
-}
-
-@keyframes waiterRoute{
-    0%{right:-78px;transform:translateY(0) scale(.82)}
-    25%{right:67%;transform:translateY(-2px) scale(1)}
-    43%{right:67%;transform:translateY(1px) scale(1)}
-    66%{right:27%;transform:translateY(-1px) scale(.96)}
-    78%{right:27%;transform:translateY(1px) scale(.96)}
-    100%{right:110%;transform:translateY(0) scale(.82)}
-}
-
-.walker::after{
-    left:4px;
-    bottom:-4px;
-    width:68px;
-    height:10px;
-    background:#05060799;
-    filter:blur(3px);
-}
-
-@keyframes photoWalkSway{
-    from{transform:rotate(-1.5deg) translateY(1px)}
-    to{transform:rotate(1.5deg) translateY(-1px)}
-}
-
-.person-head{
-    position:absolute;
-    top:2px;
-    left:13px;
-    width:34px;
-    height:34px;
-    border-radius:48% 48% 44% 44%;
-    background:linear-gradient(135deg,#ffd6ad 0 48%,#d98a64 49% 100%);
-    border:2px solid #9b543f;
-    box-shadow:inset -4px -3px 0 #b86d52,4px 5px 0 #3a2018;
-}
-
-.person-head::before{
-    content:"";
-    position:absolute;
-    top:7px;
-    left:6px;
-    width:4px;
-    height:4px;
-    border-radius:50%;
-    background:#241813;
-    box-shadow:12px 0 #241813;
-}
-
-.person-head::after{
-    content:"";
-    position:absolute;
-    left:10px;
-    bottom:5px;
-    width:7px;
-    height:3px;
-    border-bottom:2px solid #7b392e;
-    border-radius:50%;
-}
-
-.person-hair{
-    position:absolute;
-    z-index:2;
-    top:0;
-    left:11px;
-    width:38px;
-    height:15px;
-    border-radius:60% 60% 25% 25%;
-    background:linear-gradient(135deg,#211713,#58352a);
-    transform:rotate(-4deg);
-}
-
-.person-body{
-    position:absolute;
-    left:8px;
-    bottom:18px;
-    width:44px;
-    height:42px;
-    border-radius:16px 16px 8px 8px;
-    background:linear-gradient(135deg,var(--shirt,#d87325) 0 52%,#7d321e 53% 100%);
-    border:2px solid #4a2118;
-    box-shadow:5px 5px 0 #321b15;
-}
-
-.person-arm,
-.person-leg{
-    position:absolute;
-    transform-origin:top center;
-}
-
-.person-arm{
-    z-index:1;
-    top:28px;
-    width:9px;
-    height:28px;
-    border:2px solid #9b543f;
-    border-radius:8px;
-    background:linear-gradient(#ffd6ad,#d98a64);
-}
-
-.person-arm::after{
-    content:"";
-    position:absolute;
-    bottom:-6px;
-    left:-2px;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#ffd6ad;
-    border:1px solid #9b543f;
-}
-
-.person-arm-left{left:2px;transform:rotate(17deg)}
-.person-arm-right{right:2px;transform:rotate(-17deg)}
-
-.person-leg{
-    z-index:-1;
-    bottom:-18px;
-    width:11px;
-    height:22px;
-    border-radius:4px;
-    background:linear-gradient(90deg,#241813,#553025);
-}
-
-.person-leg::after{
-    content:"";
-    position:absolute;
-    bottom:-4px;
-    width:15px;
-    height:7px;
-    border-radius:6px 7px 3px 3px;
-    background:#160e0b;
-}
-
-.person-leg-left{left:14px}
-.person-leg-right{right:14px}
-
-.walker .person-arm-left{animation:armLeft .45s ease-in-out infinite alternate}
-.walker .person-arm-right{animation:armRight .45s ease-in-out infinite alternate}
-
-@keyframes armLeft{
-    from{transform:rotate(25deg)}
-    to{transform:rotate(-22deg)}
-}
-
-@keyframes armRight{
-    from{transform:rotate(-22deg)}
-    to{transform:rotate(25deg)}
-}
-
-.person-2{--shirt:#3b82a0}
-.person-3{--shirt:#8b4e9b}
-.person-4{--shirt:#39966b}
-.person-5{--shirt:#b45f35}
-
-@keyframes customerBob{
-    0%,100%{transform:translateY(0) rotateY(-5deg)}
-    50%{transform:translateY(-3px) rotateY(5deg)}
-}
-
-.customer-name{
-    font-size:12px;
-    margin-top:4px;
-}
-
-/* CUSTOMER ORDER */
-
-.order-panel{
-    background:#241813;
-    border:1px solid #6d4937;
-    border-radius:15px;
-    padding:15px;
-}
-
-.order-food{
-    font-size:22px;
-    color:#ffd27d;
-    margin:8px 0;
-}
-
-.patience{
-    height:13px;
-    background:#333;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:8px;
-}
-
-.patience-bar{
-    height:100%;
-    width:100%;
-    background:#46c463;
-    transition:.2s;
+.table {
+    width: 130px;
+    height: 55px;
+    background: #754323;
+    border-radius: 50%;
+    border: 5px solid #4d2917;
+    text-align: center;
+    padding-top: 12px;
+    color: white;
+    font-weight: bold;
 }
 
 /* KITCHEN */
 
-.kitchen{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:12px;
+.kitchen {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    background: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
 }
 
-.station{
-    background:#211713;
-    border:1px solid #53382b;
-    border-radius:15px;
-    padding:15px;
-    text-align:center;
-    min-height:170px;
+.station {
+    background: #444;
+    border: 3px solid #888;
+    width: 130px;
+    height: 105px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    padding: 10px;
 }
 
-.station-icon{
-    font-size:45px;
-    margin-bottom:8px;
+.station button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 9px;
+    border: none;
+    border-radius: 8px;
+    background: #ffb703;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.station h3{
-    margin-bottom:5px;
+.station button:hover {
+    background: #ffd166;
 }
 
-.station p{
-    color:#bbb;
-    font-size:13px;
+/* CONTROLS */
+
+.controls {
+    margin-top: 15px;
+    text-align: center;
 }
 
-button{
-    border:none;
-    border-radius:9px;
-    padding:11px;
-    width:100%;
-    margin-top:9px;
-    background:#d87325;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+.controls button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #7b2d26;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
 }
 
-button:hover{
-    background:#ff983f;
-    transform:scale(1.02);
-}
-
-button:disabled{
-    background:#555;
-    cursor:not-allowed;
-}
-
-/* INGREDIENTS */
-
-.inventory{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-    gap:8px;
-}
-
-.ingredient{
-    background:#211713;
-    padding:12px;
-    border-radius:10px;
-    text-align:center;
-}
-
-/* MENU */
-
-.menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:12px;
-}
-
-.menu-item{
-    background:#241813;
-    padding:15px;
-    border-radius:15px;
-    border-left:4px solid #e27b28;
-}
-
-.price{
-    color:#ffd27d;
-    font-weight:bold;
-}
-
-/* UPGRADES */
-
-.upgrades{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:12px;
-}
-
-.upgrade{
-    background:#211713;
-    padding:15px;
-    border-radius:15px;
+.controls button:hover {
+    background: #a63d32;
 }
 
 /* MESSAGE */
 
-#message{
-    min-height:35px;
-    text-align:center;
-    color:#ffd27d;
-    font-size:17px;
-    margin:15px 0;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:#000b;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:50;
-    padding:20px;
-}
-
-.modal-box{
-    background:#241813;
-    border-radius:18px;
-    padding:25px;
-    max-width:400px;
-    width:100%;
-    text-align:center;
-    box-shadow:0 10px 40px #000;
-}
-
-.modal-box h2{
-    color:#ffc77d;
-    margin-bottom:12px;
-}
-
-.close{
-    background:#7b2929;
+#message {
+    margin-top: 10px;
+    min-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /* RESPONSIVE */
 
-@media(max-width:600px){
-
-    header h1{
-        font-size:22px;
+@media(max-width:700px) {
+    header h1 {
+        font-size: 22px;
     }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
+    .stats {
+        gap: 10px;
+        font-size: 13px;
     }
 
-    .tables{
-        grid-template-columns:repeat(2,1fr);
+    .window {
+        display: none;
     }
 
-    .walker{
-        top:260px;
+    .table {
+        width: 90px;
     }
 
-    .walkway::after{
-        top:350px;
+    .station {
+        width: 100px;
+        height: 100px;
+        font-size: 12px;
     }
 
-    .restaurant-name{
-        font-size:22px;
+    .customer {
+        width: 80px;
+    }
+
+    .person {
+        width: 50px;
+        height: 50px;
+    }
+
+    .person:after {
+        width: 60px;
+        height: 45px;
+        top: 42px;
+        left: -9px;
     }
 }
 </style>
@@ -712,899 +294,310 @@ button:disabled{
 <body>
 
 <header>
+    <h1>🍽️ Purity Restaurant</h1>
 
-<h1>👩‍🍳 Purity's Restaurant ❤️</h1>
-
-<div class="subtitle">
-Where every meal is made with love 😉
-</div>
-
-<div class="stats">
-
-<div class="stat">
-💰 KSh <b id="money">2000</b>
-</div>
-
-<div class="stat">
-⭐ <b id="reputation">50</b>
-</div>
-
-<div class="stat">
-🔥 Level <b id="level">1</b>
-</div>
-
-<div class="stat">
-👨‍🍳 Orders <b id="served">0</b>
-</div>
-
-</div>
-
+    <div class="stats">
+        <span>⭐ Score: <b id="score">0</b></span>
+        <span>❤️ Lives: <b id="lives">3</b></span>
+        <span>🏆 Level: <b id="level">1</b></span>
+        <span>⏱️ Time: <b id="time">60</b></span>
+    </div>
 </header>
 
 <div class="game">
 
-<!-- RESTAURANT -->
+    <div class="restaurant">
 
-<div class="section">
+        <div class="wall-sign">
+            👩‍🍳 PURITY'S RESTAURANT
+        </div>
 
-<div class="restaurant">
+        <div class="window"></div>
 
-<div class="restaurant-name">
-❤️ PURITY'S RESTAURANT ❤️
-</div>
+        <div class="customer-area" id="customerArea"></div>
 
-<div class="walkway" aria-hidden="true">
-<div class="walker person-4"><img class="human-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=240&q=82" alt="Customer entering the restaurant"></div>
-<div class="walker walker-reverse person-5"><img class="human-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=240&q=82" alt="Customer entering the restaurant"></div>
-<div class="walker waiter"><img class="human-photo" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=240&q=82" alt="Waiter walking between tables"></div>
-</div>
+        <div class="tables">
+            <div class="table">TABLE 1</div>
+            <div class="table">TABLE 2</div>
+            <div class="table">TABLE 3</div>
+        </div>
 
-<div class="tables">
+        <div class="kitchen">
 
-<div class="table">
-<div class="customer person-1" id="customer1"><img class="human-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=82" alt="Customer seated at table one"></div>
-<div class="customer-name">Table 1</div>
-</div>
+            <div class="station">
+                🔥
+                <br>
+                Cooking
+                <button onclick="cook()">COOK</button>
+            </div>
 
-<div class="table">
-<div class="customer person-2" id="customer2"><img class="human-photo" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=240&q=82" alt="Customer seated at table two"></div>
-<div class="customer-name">Table 2</div>
-</div>
+            <div class="station">
+                🍽️
+                <br>
+                Serving
+                <button onclick="serve()">SERVE</button>
+            </div>
 
-<div class="table">
-<div class="customer person-3" id="customer3"><img class="human-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=240&q=82" alt="Customer seated at table three"></div>
-<div class="customer-name">Table 3</div>
-</div>
+            <div class="station">
+                🥤
+                <br>
+                Drinks
+                <button onclick="drink()">DRINK</button>
+            </div>
 
-<div class="table extra-table" hidden>
-<div class="customer person-4"><img class="human-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=240&q=82" alt="Customer seated at table four"></div>
-<div class="customer-name">Table 4</div>
-</div>
+            <div class="station">
+                🧹
+                <br>
+                Clean
+                <button onclick="clean()">CLEAN</button>
+            </div>
 
-<div class="table extra-table" hidden>
-<div class="customer person-5"><img class="human-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=240&q=82" alt="Customer seated at table five"></div>
-<div class="customer-name">Table 5</div>
-</div>
+        </div>
 
-</div>
+    </div>
 
-</div>
+    <div id="message">
+        Welcome to Purity Restaurant! 👩‍🍳
+    </div>
 
-</div>
-
-
-<!-- CURRENT ORDER -->
-
-<div class="section">
-
-<h2 class="section-title">🧾 Current Customer Order</h2>
-
-<div class="order-panel">
-
-<div>
-Customer: <b id="customerName">Waiting...</b>
-</div>
-
-<div class="order-food" id="orderName">
-Waiting for customer...
-</div>
-
-<div>
-💰 Order value:
-<b>KSh <span id="orderPrice">0</span></b>
-</div>
-
-<div style="margin-top:10px">
-⏳ Customer patience
-</div>
-
-<div class="patience">
-<div class="patience-bar" id="patienceBar"></div>
-</div>
+    <div class="controls">
+        <button onclick="startGame()">▶ START GAME</button>
+        <button onclick="newCustomer()">👤 NEW CUSTOMER</button>
+    </div>
 
 </div>
-
-</div>
-
-
-<!-- KITCHEN -->
-
-<div class="section">
-
-<h2 class="section-title">👩‍🍳 Professional Kitchen</h2>
-
-<div class="kitchen">
-
-<div class="station">
-
-<div class="station-icon">🔪</div>
-
-<h3>Prep Station</h3>
-
-<p>Prepare fresh ingredients.</p>
-
-<button onclick="prepareFood()">
-🔪 Prepare Ingredients
-</button>
-
-</div>
-
-
-<div class="station">
-
-<div class="station-icon">🔥</div>
-
-<h3>Stove</h3>
-
-<p>Cook the main dish.</p>
-
-<button onclick="cookFood()">
-🔥 Start Cooking
-</button>
-
-</div>
-
-
-<div class="station">
-
-<div class="station-icon">🧂</div>
-
-<h3>Seasoning</h3>
-
-<p>Create the perfect flavour.</p>
-
-<button onclick="seasonFood()">
-🧂 Season
-</button>
-
-</div>
-
-
-<div class="station">
-
-<div class="station-icon">🍽️</div>
-
-<h3>Plating</h3>
-
-<p>Present the meal professionally.</p>
-
-<button onclick="plateFood()">
-✨ Plate Dish
-</button>
-
-</div>
-
-
-<div class="station">
-
-<div class="station-icon">🥤</div>
-
-<h3>Bar</h3>
-
-<p>Prepare a refreshing drink.</p>
-
-<button onclick="makeDrink()">
-🍹 Make Drink
-</button>
-
-</div>
-
-
-<div class="station">
-
-<div class="station-icon">🚶</div>
-
-<h3>Service</h3>
-
-<p>Deliver the customer's meal.</p>
-
-<button onclick="serveCustomer()">
-❤️ Serve Customer
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- INGREDIENTS -->
-
-<div class="section">
-
-<h2 class="section-title">📦 Kitchen Inventory</h2>
-
-<div class="inventory">
-
-<div class="ingredient">
-🥩<br>
-Beef<br>
-<b id="beef">10</b>
-</div>
-
-<div class="ingredient">
-🍗<br>
-Chicken<br>
-<b id="chicken">10</b>
-</div>
-
-<div class="ingredient">
-🐟<br>
-Fish<br>
-<b id="fish">8</b>
-</div>
-
-<div class="ingredient">
-🍚<br>
-Rice<br>
-<b id="rice">15</b>
-</div>
-
-<div class="ingredient">
-🥔<br>
-Potatoes<br>
-<b id="potatoes">15</b>
-</div>
-
-<div class="ingredient">
-🥬<br>
-Vegetables<br>
-<b id="vegetables">15</b>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- MENU -->
-
-<div class="section">
-
-<h2 class="section-title">📖 Purity's Menu</h2>
-
-<div class="menu">
-
-<div class="menu-item">
-🍗 Chicken & Chips
-<br>
-<span class="price">KSh 650</span>
-</div>
-
-<div class="menu-item">
-🍛 Chicken Biryani
-<br>
-<span class="price">KSh 850</span>
-</div>
-
-<div class="menu-item">
-🐟 Fish & Ugali
-<br>
-<span class="price">KSh 600</span>
-</div>
-
-<div class="menu-item">
-🥩 Beef Steak
-<br>
-<span class="price">KSh 950</span>
-</div>
-
-<div class="menu-item">
-🍝 Beef Spaghetti
-<br>
-<span class="price">KSh 700</span>
-</div>
-
-<div class="menu-item">
-🍔 Gourmet Burger
-<br>
-<span class="price">KSh 750</span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- UPGRADES -->
-
-<div class="section">
-
-<h2 class="section-title">🏪 Restaurant Upgrades</h2>
-
-<div class="upgrades">
-
-<div class="upgrade">
-
-<h3>🔥 Better Stove</h3>
-
-<p>Cooking becomes faster.</p>
-
-<button onclick="upgradeStove()">
-Upgrade — KSh 1500
-</button>
-
-</div>
-
-
-<div class="upgrade">
-
-<h3>🧊 Bigger Fridge</h3>
-
-<p>Store more ingredients.</p>
-
-<button onclick="upgradeFridge()">
-Upgrade — KSh 2000
-</button>
-
-</div>
-
-
-<div class="upgrade">
-
-<h3>🪑 More Tables</h3>
-
-<p>Serve more customers.</p>
-
-<button onclick="upgradeTables()">
-Upgrade — KSh 2500
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div id="message">
-👩‍🍳 Welcome to Purity's Restaurant!
-</div>
-
-</div>
-
-
-<!-- LEVEL UP MODAL -->
-
-<div class="modal" id="levelModal">
-
-<div class="modal-box">
-
-<h2>🎉 LEVEL UP!</h2>
-
-<p id="levelMessage"></p>
-
-<button onclick="closeModal()">
-❤️ Continue Cooking
-</button>
-
-</div>
-
-</div>
-
 
 <script>
 
-let money = 2000;
-let reputation = 50;
+let score = 0;
+let lives = 3;
 let level = 1;
-let served = 0;
+let time = 60;
 
-let patience = 100;
+let currentOrder = null;
+let gameRunning = false;
+let timer;
 
-let prepared = false;
-let cooked = false;
-let seasoned = false;
-let plated = false;
-let drinkReady = false;
-
-let stoveLevel = 1;
-let fridgeLevel = 1;
-let tableLevel = 1;
-
-let ingredients = {
-
-beef:10,
-chicken:10,
-fish:8,
-rice:15,
-potatoes:15,
-vegetables:15
-
-};
-
-let ingredientCapacity = 15;
-
-const customers = [
-"Sarah",
-"Brian",
-"David",
-"Mary",
-"Kevin",
-"Linda",
-"James",
-"Faith",
-"Daniel",
-"Grace"
+const foods = [
+    "🍔 Burger",
+    "🍕 Pizza",
+    "🍗 Chicken",
+    "🍝 Pasta",
+    "🍛 Rice",
+    "🥗 Salad"
 ];
 
-const orders = [
-
-{
-name:"🍗 Chicken & Chips",
-price:650,
-ingredient:"chicken"
-},
-
-{
-name:"🍛 Chicken Biryani",
-price:850,
-ingredient:"chicken"
-},
-
-{
-name:"🐟 Fish & Ugali",
-price:600,
-ingredient:"fish"
-},
-
-{
-name:"🥩 Beef Steak",
-price:950,
-ingredient:"beef"
-},
-
-{
-name:"🍝 Beef Spaghetti",
-price:700,
-ingredient:"beef"
-},
-
-{
-name:"🍔 Gourmet Burger",
-price:750,
-ingredient:"beef"
-}
-
+const names = [
+    "Amina",
+    "Brian",
+    "Kevin",
+    "Mercy",
+    "David",
+    "Faith",
+    "John",
+    "Sharon"
 ];
 
-let currentOrder;
-let patienceTimer;
+function updateStats() {
 
-
-/* MESSAGE */
-
-function message(text){
-
-document.getElementById("message").innerText=text;
+    document.getElementById("score").textContent = score;
+    document.getElementById("lives").textContent = lives;
+    document.getElementById("level").textContent = level;
+    document.getElementById("time").textContent = time;
 
 }
 
+function message(text) {
 
-/* NEW CUSTOMER */
-
-function newCustomer(){
-
-clearInterval(patienceTimer);
-
-currentOrder =
-orders[Math.floor(Math.random()*orders.length)];
-
-let customer =
-customers[Math.floor(Math.random()*customers.length)];
-
-document.getElementById("customerName").innerText=customer;
-
-document.getElementById("orderName").innerText=
-currentOrder.name;
-
-document.getElementById("orderPrice").innerText=
-currentOrder.price;
-
-resetCooking();
-
-patience=100;
-
-patience=100+(tableLevel-1)*25;
-
-document.getElementById("patienceBar").style.width="100%";
-
-patienceTimer=setInterval(()=>{
-
-patience-=0.5;
-
-document.getElementById("patienceBar").style.width=
-patience+"%";
-
-if(patience<=0){
-
-clearInterval(patienceTimer);
-
-reputation-=5;
-
-message("😢 "+customer+" left because the food took too long!");
-
-updateStats();
-
-setTimeout(newCustomer,2000);
+    document.getElementById("message").textContent = text;
 
 }
 
-},200);
+function startGame() {
+
+    if (gameRunning) return;
+
+    gameRunning = true;
+    score = 0;
+    lives = 3;
+    level = 1;
+    time = 60;
+
+    updateStats();
+
+    message("The restaurant is OPEN! 🍽️");
+
+    newCustomer();
+
+    timer = setInterval(() => {
+
+        time--;
+
+        updateStats();
+
+        if (time <= 0) {
+
+            clearInterval(timer);
+            gameRunning = false;
+
+            message(
+                "⏰ Time's up! Final score: " + score
+            );
+
+        }
+
+    }, 1000);
 
 }
 
+function newCustomer() {
 
-/* RESET */
+    if (!gameRunning) {
 
-function resetCooking(){
+        message("Press START GAME first!");
 
-prepared=false;
-cooked=false;
-seasoned=false;
-plated=false;
-drinkReady=false;
+        return;
 
-}
+    }
 
+    const area = document.getElementById("customerArea");
 
-/* PREPARE */
+    area.innerHTML = "";
 
-function prepareFood(){
+    const customer = document.createElement("div");
 
-if(prepared){
+    customer.className = "customer";
 
-message("🔪 Ingredients are already prepared.");
+    customer.style.left =
+        Math.random() * 80 + 5 + "%";
 
-return;
+    const name =
+        names[Math.floor(Math.random() * names.length)];
 
-}
+    const food =
+        foods[Math.floor(Math.random() * foods.length)];
 
-let ing=currentOrder.ingredient;
+    currentOrder = food;
 
-if(ingredients[ing]<=0){
+    customer.innerHTML = `
 
-message("❌ You are out of "+ing+"!");
+        <div class="person"></div>
 
-return;
+        <div class="customer-name">
+            ${name}
+        </div>
 
-}
+        <div class="order">
+            Wants:<br>
+            <b>${food}</b>
+        </div>
 
-ingredients[ing]--;
+    `;
 
-prepared=true;
+    area.appendChild(customer);
 
-updateInventory();
-
-message("🔪 Fresh ingredients prepared!");
-
-}
-
-
-/* COOK */
-
-function cookFood(){
-
-if(!prepared){
-
-message("⚠️ Prepare the ingredients first!");
-
-return;
+    message(
+        "👋 " + name + " has arrived! Prepare the order."
+    );
 
 }
 
-if(cooked){
+function cook() {
 
-message("🔥 The dish is already cooked!");
+    if (!gameRunning) return;
 
-return;
+    message(
+        "🔥 Cooking " + currentOrder + "..."
+    );
 
-}
+    setTimeout(() => {
 
-message("🔥 Cooking... watch the temperature!");
+        message(
+            "✅ " + currentOrder +
+            " is ready! Serve the customer."
+        );
 
-setTimeout(()=>{
-
-cooked=true;
-
-message("🔥 Perfect! The food is cooked.");
-
-},Math.max(250,800-(stoveLevel-1)*200));
-
-}
-
-
-/* SEASON */
-
-function seasonFood(){
-
-if(!cooked){
-
-message("⚠️ Cook the food first!");
-
-return;
+    }, 800);
 
 }
 
-seasoned=true;
+function serve() {
 
-message("🧂 Perfect seasoning! The chef approves 😎");
+    if (!gameRunning) return;
 
-}
+    if (!currentOrder) {
 
+        message("❌ There is no customer!");
 
-/* PLATE */
+        return;
 
-function plateFood(){
+    }
 
-if(!seasoned){
+    score += 10 * level;
 
-message("⚠️ Season the food before plating!");
+    message(
+        "🎉 Great service! +" +
+        (10 * level) +
+        " points!"
+    );
 
-return;
+    document.getElementById("customerArea").innerHTML = "";
 
-}
+    currentOrder = null;
 
-plated=true;
+    if (score >= level * 100) {
 
-message("✨ Beautiful professional plating!");
+        level++;
 
-}
+        time += 15;
 
+        message(
+            "🔥 LEVEL UP! Welcome to Level " +
+            level +
+            "!"
+        );
 
-/* DRINK */
+    }
 
-function makeDrink(){
+    updateStats();
 
-drinkReady=true;
+    setTimeout(() => {
 
-message("🍹 Fresh drink prepared!");
+        if (gameRunning) {
+            newCustomer();
+        }
 
-}
-
-
-/* SERVE */
-
-function serveCustomer(){
-
-if(!plated){
-
-message("⚠️ The meal isn't ready yet!");
-
-return;
-
-}
-
-clearInterval(patienceTimer);
-
-let quality=0;
-
-if(prepared) quality+=20;
-if(cooked) quality+=20;
-if(seasoned) quality+=20;
-if(plated) quality+=20;
-if(drinkReady) quality+=20;
-
-let earnings=currentOrder.price;
-
-let bonus=0;
-
-if(quality===100){
-
-bonus=150;
-
-reputation+=8;
-
-message("🌟 PERFECT! Customer loved the entire experience!");
+    }, 1200);
 
 }
 
-else if(quality>=80){
+function drink() {
 
-bonus=75;
+    if (!gameRunning) return;
 
-reputation+=5;
+    score += 5;
 
-message("😊 Excellent service!");
+    message(
+        "🥤 Drink served! +5 points"
+    );
 
-}
-
-else{
-
-bonus=0;
-
-reputation-=2;
-
-message("😐 Customer enjoyed the food, but service could improve.");
+    updateStats();
 
 }
 
-earnings+=bonus;
+function clean() {
 
-money+=earnings;
+    if (!gameRunning) return;
 
-served++;
+    score += 3;
 
-document.getElementById("served").innerText=served;
+    message(
+        "🧹 Table cleaned! +3 points"
+    );
 
-checkLevel();
-
-updateStats();
-
-setTimeout(newCustomer,2500);
+    updateStats();
 
 }
-
-
-/* LEVEL SYSTEM */
-
-function checkLevel(){
-
-let required=level*2500;
-
-if(money>=required){
-
-level++;
-
-document.getElementById("levelMessage").innerText=
-"Congratulations! Purity's Restaurant has reached Level "+
-level+"! New opportunities are opening.";
-
-document.getElementById("levelModal").style.display="flex";
-
-}
-
-}
-
-
-/* CLOSE */
-
-function closeModal(){
-
-document.getElementById("levelModal").style.display="none";
-
-}
-
-
-/* UPGRADES */
-
-function upgradeStove(){
-
-if(money<1500){
-
-message("💰 Not enough money!");
-
-return;
-
-}
-
-money-=1500;
-
-stoveLevel++;
-
-message("🔥 Stove upgraded! Cooking is now faster.");
-
-updateStats();
-
-}
-
-
-function upgradeFridge(){
-
-if(money<2000){
-
-message("💰 Not enough money!");
-
-return;
-
-}
-
-money-=2000;
-
-fridgeLevel++;
-
-ingredientCapacity+=5;
-
-Object.keys(ingredients).forEach(ingredient=>{
-ingredients[ingredient]=Math.min(ingredientCapacity,ingredients[ingredient]+5);
-});
-
-updateInventory();
-
-message("🧊 Bigger fridge installed!");
-
-updateStats();
-
-}
-
-
-function upgradeTables(){
-
-if(money<2500){
-
-message("💰 Not enough money!");
-
-return;
-
-}
-
-money-=2500;
-
-tableLevel++;
-
-document.querySelectorAll(".extra-table").forEach((table,index)=>{
-if(index<tableLevel-1){
-table.hidden=false;
-}
-});
-
-message("🪑 New tables added! More customers can visit.");
-
-updateStats();
-
-}
-
-
-/* STATS */
-
-function updateStats(){
-
-document.getElementById("money").innerText=money;
-
-document.getElementById("reputation").innerText=reputation;
-
-document.getElementById("level").innerText=level;
-
-}
-
-
-/* INVENTORY */
-
-function updateInventory(){
-
-document.getElementById("beef").innerText=ingredients.beef;
-
-document.getElementById("chicken").innerText=ingredients.chicken;
-
-document.getElementById("fish").innerText=ingredients.fish;
-
-document.getElementById("rice").innerText=ingredients.rice;
-
-document.getElementById("potatoes").innerText=ingredients.potatoes;
-
-document.getElementById("vegetables").innerText=ingredients.vegetables;
-
-}
-
-
-/* START */
-
-updateStats();
-
-updateInventory();
-
-newCustomer();
 
 </script>
 
